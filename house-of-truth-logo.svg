@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 126" role="img" aria-labelledby="title">
+  <title id="title">House of Truth Festival</title>
+  <g fill="#11110f" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900">
+    <text x="0" y="38" font-size="43" letter-spacing="2">HOUSE</text>
+    <text x="254" y="38" font-size="20" letter-spacing="3">OF</text>
+    <text x="0" y="82" font-size="43" letter-spacing="2">TRUTH</text>
+    <text x="2" y="114" font-size="18" letter-spacing="8">FESTIVAL</text>
+  </g>
+  <circle cx="329" cy="30" r="4" fill="#11110f"/>
+</svg>
