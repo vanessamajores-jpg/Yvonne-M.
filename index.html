@@ -631,6 +631,15 @@
     text-decoration:none;
     display:block;
   }
+  button.ugc-card{
+    width:100%;
+    padding:0;
+    border:0;
+    color:inherit;
+    font:inherit;
+    text-align:left;
+    appearance:none;
+  }
   .ugc-card img{
     transition:transform 1.2s cubic-bezier(.16,.6,.15,1);
   }
@@ -776,6 +785,16 @@
     object-fit:contain;
     box-shadow:0 30px 80px rgba(0,0,0,0.5);
   }
+  .lightbox video{
+    display:none;
+    max-width:min(520px, 90vw);
+    max-height:86vh;
+    width:auto; height:auto;
+    background:#000;
+    box-shadow:0 30px 80px rgba(0,0,0,0.5);
+  }
+  .lightbox.video-open img{ display:none; }
+  .lightbox.video-open video{ display:block; }
   .lightbox-close{
     position:absolute; top:28px; right:32px;
     color:#fff; font-size:28px; cursor:pointer;
@@ -1546,6 +1565,13 @@
         <div class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         <div class="ugc-label">@houseoftruthfestival →</div>
       </a>
+      <button class="ugc-card" type="button" data-video-src="house-of-truth-aahhh.m4v" data-print-ref="House of Truth Festival × Aahhh" aria-label="House of Truth Festival × Aahhh Video abspielen">
+        <img src="house-of-truth-aahhh-poster.png" alt="House of Truth Festival × Aahhh UGC Video">
+        <div class="ugc-scrim"></div>
+        <div class="ugc-tag">Video</div>
+        <div class="ugc-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="ugc-label">House of Truth × Aahhh</div>
+      </button>
     </div>
   </div>
 </section>
@@ -1577,6 +1603,7 @@
 <div class="lightbox" id="lightbox">
   <div class="lightbox-close" id="lightboxClose">&times;</div>
   <img src="" alt="" id="lightboxImg">
+  <video id="lightboxVideo" controls playsinline preload="metadata" poster="house-of-truth-aahhh-poster.png"></video>
 </div>
 
 <script>
@@ -1628,14 +1655,28 @@
   // Lightbox for editorial / campaign frames (not UGC cards, those link out)
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxVideo = document.getElementById('lightboxVideo');
   const lightboxClose = document.getElementById('lightboxClose');
   document.querySelectorAll('.frame[data-full]').forEach(frame => {
     frame.addEventListener('click', () => {
       lightboxImg.src = frame.getAttribute('data-full');
+      lightbox.classList.remove('video-open');
       lightbox.classList.add('open');
     });
   });
-  const closeLightbox = () => lightbox.classList.remove('open');
+  document.querySelectorAll('[data-video-src]').forEach(card => {
+    card.addEventListener('click', () => {
+      lightboxVideo.src = card.getAttribute('data-video-src');
+      lightbox.classList.add('video-open', 'open');
+      lightboxVideo.play().catch(() => {});
+    });
+  });
+  const closeLightbox = () => {
+    lightbox.classList.remove('open', 'video-open');
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
+    lightboxVideo.load();
+  };
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
