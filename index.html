@@ -154,28 +154,50 @@
   .hero{
     position:relative;
     height:calc(100dvh - var(--tab-h));
-    min-height:560px;
+    min-height:640px;
     display:flex;
     align-items:flex-end;
     overflow:hidden;
-    background:#1b2327;
+    background:#0d0e0e;
   }
   .hero-bg{
-    position:absolute; inset:0 0 0 36%;
+    position:absolute;
+    z-index:1;
+    right:clamp(28px,4vw,72px);
+    top:50%;
+    width:min(59vw,860px);
+    aspect-ratio:640/428;
+    transform:translateY(-50%);
+    overflow:visible;
   }
-  .hero-bg img{
-    filter:saturate(0.94);
+  .hero-bg::before{
+    content:"";
+    position:absolute;
+    inset:-12px;
+    border:1px solid rgba(255,255,255,.2);
+    pointer-events:none;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute;
+    left:-13px;
+    bottom:-13px;
+    width:34%;
+    height:1px;
+    background:var(--paper-2);
+    pointer-events:none;
   }
   .hero-landscape picture{
     display:block;
     width:100%;
     height:100%;
-    background:#252422;
+    background:#292a29;
+    overflow:hidden;
   }
   .hero-landscape img{
     width:100%; height:100%;
     object-fit:cover;
-    object-position:center 44%;
+    object-position:center center;
     filter:none;
     transform:none;
     transform-origin:center center;
@@ -184,16 +206,21 @@
   @media (max-width:760px){
     .hero{
       height:calc(100svh - var(--tab-h));
-      min-height:760px;
+      min-height:790px;
       display:block;
       background:#11110f;
     }
     .hero-bg{
-      inset:0 0 auto;
-      height:66%;
+      inset:20px 18px auto;
+      width:auto;
+      height:auto;
+      aspect-ratio:640/428;
+      transform:none;
     }
+    .hero-bg::before{ inset:-6px; }
+    .hero-bg::after{ left:-7px; bottom:-7px; width:42%; }
     .hero-landscape img{
-      object-position:center 30%;
+      object-position:center center;
       transform:none;
       transform-origin:center center;
       animation:none;
@@ -206,9 +233,11 @@
   }
   .hero-scrim{
     position:absolute; inset:0;
+    z-index:1;
     background:
-      linear-gradient(90deg, #10110f 0%, #10110f 31%, rgba(16,17,15,.92) 39%, rgba(16,17,15,.18) 61%, rgba(9,11,12,.16) 100%),
-      linear-gradient(0deg, rgba(9,11,12,.58) 0%, rgba(9,11,12,0) 48%);
+      linear-gradient(90deg, #0d0e0e 0%, #0d0e0e 28%, rgba(13,14,14,.96) 35%, rgba(13,14,14,.38) 48%, rgba(13,14,14,0) 64%),
+      linear-gradient(0deg, rgba(9,10,10,.34) 0%, rgba(9,10,10,0) 38%);
+    pointer-events:none;
   }
   .hero-content{
     position:relative; z-index:2;
@@ -225,11 +254,16 @@
   }
   .hero-eyebrow .dash{ width:28px; height:1px; background:#fff; opacity:0.6; }
   .hero-name{
-    font-size:clamp(54px, 6.2vw, 88px);
-    line-height:0.86;
+    font-size:clamp(64px, 7.35vw, 106px);
+    line-height:0.82;
     letter-spacing:-0.045em;
     font-weight:600;
-    max-width:590px;
+    max-width:760px;
+    text-wrap:balance;
+  }
+  .hero-first-line{
+    display:inline-block;
+    white-space:nowrap;
   }
   .hero-name em{
     font-style:normal;
@@ -252,7 +286,7 @@
       inset:auto 0 0;
       display:grid;
       grid-template-columns:1fr;
-      padding:0 22px 30px;
+      padding:0 22px 34px;
     }
     .hero-eyebrow{
       grid-column:1;
@@ -262,7 +296,7 @@
     }
     .hero-name{
       grid-column:1;
-      font-size:clamp(47px,14.2vw,64px);
+      font-size:clamp(48px,14.5vw,66px);
       line-height:.86;
       max-width:100%;
     }
@@ -277,8 +311,7 @@
     }
     .hero-scrim{
       background:
-        linear-gradient(180deg, rgba(9,11,12,.03) 0%, rgba(9,11,12,.02) 46%, rgba(9,11,12,.9) 66%, #11110f 76%),
-        linear-gradient(90deg, rgba(9,11,12,.14), rgba(9,11,12,0) 62%);
+        linear-gradient(180deg, rgba(9,11,12,0) 0%, rgba(9,11,12,0) 42%, rgba(9,11,12,.28) 54%, rgba(17,17,15,.94) 65%, #11110f 74%);
     }
   }
   @keyframes scrollPulse{
@@ -1313,13 +1346,13 @@
 <header class="hero">
   <div class="hero-bg hero-landscape">
     <picture>
-      <img src="hero-selected-original.jpeg" alt="Yvonne V. Majores im professionellen Portrait">
+      <img src="hero-selected-enhanced-v2.png" alt="Yvonne V. Majores im professionellen Portrait">
     </picture>
   </div>
   <div class="hero-scrim"></div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dash"></span>Sedcard &amp; Portfolio</div>
-    <h1 class="hero-name">Yvonne V.<br><em>Majores</em></h1>
+    <h1 class="hero-name"><span class="hero-first-line">Yvonne V.</span><br><em>Majores</em></h1>
     <p class="hero-sub">Model &amp; UGC-Creatorin — Fashion, Beauty &amp; Lifestyle. Klassische Modelarbeit trifft modernes Storytelling, von cleanen Beauty-Looks bis ausdrucksstarkem Content.</p>
   </div>
 </header>
