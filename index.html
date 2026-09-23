@@ -149,6 +149,9 @@
     position:absolute; top:22px; right:28px;
     font-size:28px; cursor:pointer; font-family:'Archivo Black', sans-serif;
   }
+  .mobile-booking{
+    display:none;
+  }
 
   /* ---------- hero ---------- */
   .hero{
@@ -206,12 +209,12 @@
   @media (max-width:760px){
     .hero{
       height:calc(100svh - var(--tab-h));
-      min-height:790px;
+      min-height:680px;
       display:block;
       background:#11110f;
     }
     .hero-bg{
-      inset:20px 18px auto;
+      inset:14px 14px auto;
       width:auto;
       height:auto;
       aspect-ratio:640/428;
@@ -286,7 +289,7 @@
       inset:auto 0 0;
       display:grid;
       grid-template-columns:1fr;
-      padding:0 22px 34px;
+      padding:0 22px 24px;
     }
     .hero-eyebrow{
       grid-column:1;
@@ -302,16 +305,51 @@
     }
     .hero-sub{
       grid-column:1;
-      margin:19px 0 0;
+      margin:15px 0 0;
       max-width:340px;
       font-size:11px;
-      line-height:1.55;
+      line-height:1.48;
       padding-left:13px;
       border-left-color:rgba(255,255,255,.35);
     }
     .hero-scrim{
       background:
         linear-gradient(180deg, rgba(9,11,12,0) 0%, rgba(9,11,12,0) 42%, rgba(9,11,12,.28) 54%, rgba(17,17,15,.94) 65%, #11110f 74%);
+    }
+    .mobile-booking{
+      position:fixed;
+      right:14px;
+      bottom:max(14px, env(safe-area-inset-bottom));
+      z-index:80;
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      min-height:44px;
+      padding:0 17px;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(13,14,14,.9);
+      color:#fff;
+      text-decoration:none;
+      font-family:'Plus Jakarta Sans', sans-serif;
+      font-size:12px;
+      font-weight:600;
+      letter-spacing:.025em;
+      box-shadow:0 12px 34px rgba(0,0,0,.22);
+      backdrop-filter:blur(16px) saturate(120%);
+      -webkit-backdrop-filter:blur(16px) saturate(120%);
+      transition:opacity .25s ease, transform .25s ease;
+    }
+    .mobile-booking::after{
+      content:"↗";
+      font-size:14px;
+      line-height:1;
+    }
+    .mobile-booking:active{ transform:scale(.98); }
+    .mobile-booking.is-hidden{
+      opacity:0;
+      transform:translateY(10px);
+      pointer-events:none;
     }
   }
   @keyframes scrollPulse{
@@ -1165,7 +1203,7 @@
     }
 
     /* chrome that makes no sense on paper */
-    .nav, .mobile-menu, .hero-scroll, .lightbox, .print-btn, .section-arrow{
+    .nav, .mobile-menu, .mobile-booking, .hero-scroll, .lightbox, .print-btn, .section-arrow{
       display:none !important;
     }
 
@@ -1632,6 +1670,8 @@
   </div>
 </footer>
 
+<a class="mobile-booking" id="mobileBooking" href="mailto:vanessamajores@gmail.com">Booking anfragen</a>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <div class="lightbox-close" id="lightboxClose">&times;</div>
@@ -1657,6 +1697,14 @@
   burger.addEventListener('click', () => mobileMenu.classList.add('open'));
   mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Keep the mobile booking action available without duplicating it over the contact area
+  const mobileBooking = document.getElementById('mobileBooking');
+  const contactSection = document.getElementById('contact');
+  const bookingVisibility = new IntersectionObserver(([entry]) => {
+    mobileBooking.classList.toggle('is-hidden', entry.isIntersecting);
+  }, { threshold:0.08 });
+  bookingVisibility.observe(contactSection);
 
   // Active link on scroll
   const sections = document.querySelectorAll('section[id], header[id]');
