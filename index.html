@@ -1636,12 +1636,19 @@
         <div class="ugc-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         <div class="ugc-label">@houseoftruthfestival →</div>
       </a>
-      <button class="ugc-card" type="button" data-video-src="house-of-truth-aahhh.m4v" data-print-ref="House of Truth Festival × Aahhh" aria-label="House of Truth Festival × Aahhh Video abspielen">
+      <button class="ugc-card" type="button" data-video-src="house-of-truth-aahhh.m4v" data-video-poster="house-of-truth-aahhh-poster-clean.png" data-print-ref="House of Truth Festival × Aahhh" aria-label="House of Truth Festival × Aahhh Video abspielen">
         <img src="house-of-truth-aahhh-poster-clean.png" alt="Yvonne beim House of Truth Festival × Aahhh">
         <div class="ugc-scrim"></div>
         <div class="ugc-tag">Video</div>
         <div class="ugc-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
         <div class="ugc-label">House of Truth × Aahhh</div>
+      </button>
+      <button class="ugc-card" type="button" data-video-src="house-of-truth-wiesn-promo.mp4" data-video-poster="house-of-truth-wiesn-promo-poster.jpg" data-print-ref="House of Truth × Wiesn Promo" aria-label="House of Truth × Wiesn Promo Video abspielen">
+        <img src="house-of-truth-wiesn-promo-poster.jpg" alt="Yvonne im House of Truth Wiesn Promo">
+        <div class="ugc-scrim"></div>
+        <div class="ugc-tag">Video</div>
+        <div class="ugc-play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></div>
+        <div class="ugc-label">House of Truth × Wiesn</div>
       </button>
     </div>
   </div>
@@ -1748,6 +1755,7 @@
   document.querySelectorAll('[data-video-src]').forEach(card => {
     card.addEventListener('click', () => {
       lightboxVideo.src = card.getAttribute('data-video-src');
+      lightboxVideo.poster = card.getAttribute('data-video-poster') || '';
       lightbox.classList.add('video-open', 'open');
       lightboxVideo.play().catch(() => {});
     });
@@ -1756,6 +1764,7 @@
     lightbox.classList.remove('open', 'video-open');
     lightboxVideo.pause();
     lightboxVideo.removeAttribute('src');
+    lightboxVideo.removeAttribute('poster');
     lightboxVideo.load();
   };
   lightboxClose.addEventListener('click', closeLightbox);
