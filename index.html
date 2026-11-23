@@ -1554,6 +1554,82 @@
   }
   @media (prefers-reduced-motion:reduce){ .ugc-loop{ display:none; } }
   @media print{ .ugc-loop{ display:none !important; } }
+
+  /* ---- Editorial Sedcard 2026 ---- */
+  :root{ --paper:#e7e2d8; --paper-soft:#f2eee7; --ink:#121210; --accent:#8b1f35; }
+  body{ background:var(--paper); }
+  .hero{
+    min-height:min(900px,100svh); background:var(--paper-soft); color:var(--ink);
+    display:grid; grid-template-columns:minmax(0,60%) minmax(0,40%); overflow:hidden;
+  }
+  .hero-bg{ position:relative; inset:auto; width:auto; height:auto; min-height:min(900px,100svh); grid-column:2; grid-row:1; }
+  .hero-landscape picture,.hero-landscape img{ width:100%; height:100%; }
+  .hero-landscape img{ object-fit:cover; object-position:center 23%; filter:none; }
+  .hero-bg::before{ inset:22px; border:1px solid rgba(255,255,255,.55); z-index:2; }
+  .hero-bg::after{ display:none; }
+  .hero-scrim{ display:none; }
+  .hero-content{
+    position:relative; inset:auto; grid-column:1; grid-row:1; z-index:3; color:var(--ink);
+    padding:clamp(110px,12vw,180px) clamp(28px,5vw,76px) 64px;
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+  }
+  .hero-eyebrow{ color:var(--ink); opacity:.68; }
+  .hero-eyebrow .dash{ background:var(--ink); }
+  .hero-name{ font-size:clamp(58px,7.2vw,112px); line-height:.78; letter-spacing:-.07em; max-width:7.4ch; color:var(--ink); }
+  .hero-name em{ color:var(--accent); font-style:italic; font-weight:400; font-family:'Cormorant Garamond',Georgia,serif; letter-spacing:-.045em; }
+  .hero-sub{ color:rgba(18,18,16,.72); border-left-color:rgba(18,18,16,.24); max-width:42ch; }
+  .hero-booking{ color:var(--ink); }
+  .hero-booking::before{ background:var(--accent); }
+  .runway-line{ background:var(--ink); }
+
+  .moodboard{ padding:clamp(84px,10vw,144px) 0; }
+  .mb-head{ display:grid; grid-template-columns:.55fr 1.2fr .8fr; align-items:end; gap:28px; }
+  .mb-head h2{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; font-size:clamp(46px,7vw,88px); letter-spacing:-.045em; }
+  .mb-head p:last-child{ justify-self:end; }
+  .mb-grid{ grid-template-columns:1.08fr .78fr .82fr; gap:clamp(12px,1.8vw,28px); }
+  .mb-a{ margin-top:8vw; }
+  .mb-b{ margin-top:0; }
+  .mb-c{ margin-top:5vw; }
+  .mb-d{ grid-column:1 / span 2; margin-top:1vw; }
+  .mb-note{ padding-left:clamp(8px,2vw,26px); }
+
+  .identity-editorial{ padding:clamp(76px,10vw,144px) 0; background:var(--ink); color:#f5f1e9; }
+  .identity-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); gap:clamp(46px,8vw,132px); align-items:start; }
+  .identity-kicker{ color:rgba(255,255,255,.55); }
+  .identity-title{ margin:26px 0 30px; font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(52px,8vw,108px); font-weight:500; line-height:.82; letter-spacing:-.055em; }
+  .identity-title em{ display:block; color:#caaea1; font-weight:400; }
+  .identity-lead{ max-width:52ch; color:rgba(255,255,255,.68); line-height:1.75; font-size:14px; }
+  .identity-list{ border-top:1px solid rgba(255,255,255,.22); }
+  .identity-item{ display:grid; grid-template-columns:48px 1fr; gap:18px; padding:23px 0; border-bottom:1px solid rgba(255,255,255,.22); }
+  .identity-no{ color:#caaea1; font:italic 24px/1 'Cormorant Garamond',Georgia,serif; }
+  .identity-item h3{ font-size:13px; text-transform:uppercase; letter-spacing:.16em; margin:0 0 8px; }
+  .identity-item p{ margin:0; color:rgba(255,255,255,.57); font-size:12px; line-height:1.65; }
+  .identity-note{ margin-top:30px; color:rgba(255,255,255,.45); font-size:10px; line-height:1.6; letter-spacing:.08em; }
+
+  .about-elegant{ background:var(--paper); }
+  .about-card{ border-radius:0; background:var(--paper-soft); color:var(--ink); box-shadow:none; }
+  .about-elegant-title{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; letter-spacing:-.04em; }
+
+  @media (max-width:760px){
+    .hero{ min-height:100svh; display:flex; flex-direction:column; }
+    .hero-bg{ min-height:0; height:min(64svh,620px); width:100%; max-width:none; order:0; aspect-ratio:auto; inset:auto; }
+    .hero-landscape picture{ display:block; width:100%; height:100%; }
+    .hero-landscape img{ object-position:center 20%; }
+    .hero-content{ order:1; padding:28px 22px 42px; justify-content:flex-start; }
+    .hero-name{ max-width:100%; font-size:clamp(50px,14.8vw,64px); line-height:.82; }
+    .hero-name br{ display:none; }
+    .hero-name em{ display:block; }
+    .hero-sub{ margin-top:22px; font-size:12px; }
+    .hero-booking{ margin-top:16px; }
+    .mb-head{ display:flex; align-items:flex-start; }
+    .mb-head p:last-child{ align-self:flex-start; }
+    .mb-grid{ grid-template-columns:1.1fr .9fr; }
+    .mb-a{ margin-top:34px; }
+    .mb-b{ margin-top:0; }
+    .mb-c{ grid-column:1 / -1; width:min(330px,82vw); margin-top:22px; }
+    .identity-grid{ grid-template-columns:1fr; }
+    .identity-title{ font-size:58px; }
+  }
 </style>
 </head>
 <body>
@@ -1587,15 +1663,14 @@
 <header class="hero">
   <div class="hero-bg hero-landscape">
     <picture>
-      <source media="(max-width: 760px)" srcset="editorial-beauty-portrait.jpg">
-      <img src="hero-selected-enhanced-v2.png" alt="Yvonne V. Majores im professionellen Portrait">
+      <img src="editorial-beauty-portrait.jpg" width="1026" height="1536" alt="Yvonne V. Majores im Editorial-Beauty-Portrait">
     </picture>
   </div>
   <div class="hero-scrim"></div>
   <div class="hero-content">
     <div class="hero-eyebrow"><span class="dash"></span>Sedcard &amp; Portfolio</div>
     <h1 class="hero-name"><span class="hero-first-line">Yvonne V.</span><br><em>Majores</em></h1>
-    <p class="hero-sub">Model &amp; UGC-Creatorin — Fashion, Beauty &amp; Lifestyle. Klassische Modelarbeit trifft modernes Storytelling, von cleanen Beauty-Looks bis ausdrucksstarkem Content.</p>
+    <p class="hero-sub">Model &amp; Editorial Creator aus München. Klassische Sedcard trifft modernes Storytelling – Beauty, Fashion, Lifestyle und authentischer UGC-Content.</p>
     <p class="hero-booking">Now booking · Limited availability</p>
   </div>
 </header>
@@ -1634,6 +1709,36 @@
           <a class="mb-cta mb-cta-soft" href="mailto:vanessamajores@gmail.com?subject=Media%20Kit%20Anfrage">Media Kit auf Anfrage</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY: editorial context without losing the Sedcard focus -->
+<section class="identity-editorial" id="identity" aria-labelledby="identity-title">
+  <div class="wrap identity-grid">
+    <div class="reveal">
+      <p class="eyebrow identity-kicker">Portrait · Munich</p>
+      <h2 class="identity-title" id="identity-title">More than<br><em>one role.</em></h2>
+      <p class="identity-lead">Ich verbinde Ästhetik, Kommunikation und echte Berufserfahrung. Vor der Kamera bleibe ich Model – hinter dem Content entwickle ich Ideen, erzähle Geschichten und übersetze Marken in Bilder, Reels und Worte.</p>
+    </div>
+    <div class="identity-list reveal" aria-label="Tätigkeiten und Perspektiven">
+      <article class="identity-item">
+        <span class="identity-no">01</span>
+        <div><h3>Model</h3><p>Beauty, Fashion und Lifestyle – clean, ausdrucksstark und wandelbar.</p></div>
+      </article>
+      <article class="identity-item">
+        <span class="identity-no">02</span>
+        <div><h3>UGC-Creatorin</h3><p>Authentische Reels und visueller Content für Marken, Produkte und Erlebnisse.</p></div>
+      </article>
+      <article class="identity-item">
+        <span class="identity-no">03</span>
+        <div><h3>LinkedIn-Ghostwriterin</h3><p>Persönliche Positionierung und klare Inhalte mit einer glaubwürdigen Stimme.</p></div>
+      </article>
+      <article class="identity-item">
+        <span class="identity-no">04</span>
+        <div><h3>Gesundheitsministerium</h3><p>Berufliche Perspektive aus Kommunikation, Verantwortung und öffentlichem Dienst.</p></div>
+      </article>
+      <p class="identity-note">München · verfügbar für ausgewählte Modeljobs, UGC-Produktionen und kreative Kooperationen</p>
     </div>
   </div>
 </section>
