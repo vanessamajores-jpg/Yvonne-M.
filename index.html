@@ -1559,23 +1559,24 @@
   :root{ --paper:#e7e2d8; --paper-soft:#f2eee7; --ink:#121210; --accent:#8b1f35; }
   body{ background:var(--paper); }
   .hero{
-    min-height:min(900px,100svh); background:var(--paper-soft); color:var(--ink);
-    display:grid; grid-template-columns:minmax(0,60%) minmax(0,40%); overflow:hidden;
+    min-height:0; height:clamp(700px,82svh,880px); background:var(--paper-soft); color:var(--ink);
+    display:grid; grid-template-columns:minmax(0,56%) minmax(360px,44%); overflow:hidden;
   }
-  .hero-bg{ position:relative; inset:auto; width:auto; height:auto; min-height:min(900px,100svh); grid-column:2; grid-row:1; }
-  .hero-landscape picture,.hero-landscape img{ width:100%; height:100%; }
-  .hero-landscape img{ object-fit:cover; object-position:center 23%; filter:none; }
+  .hero-bg{ position:relative; inset:auto; right:auto; top:auto; width:auto; height:100%; min-height:0; aspect-ratio:auto; transform:none; overflow:hidden; grid-column:2; grid-row:1; padding:52px 38px 38px; background:#e6e0d7; }
+  .hero-landscape picture{ display:block; width:100%; height:100%; background:#e6e0d7; }
+  .hero-landscape img{ display:block; width:100%; height:100%; }
+  .hero-landscape img{ object-fit:contain; object-position:center; filter:none; }
   .hero-bg::before{ inset:22px; border:1px solid rgba(255,255,255,.55); z-index:2; }
   .hero-bg::after{ display:none; }
   .hero-scrim{ display:none; }
   .hero-content{
     position:relative; inset:auto; grid-column:1; grid-row:1; z-index:3; color:var(--ink);
-    padding:clamp(110px,12vw,180px) clamp(28px,5vw,76px) 64px;
+    padding:110px clamp(36px,5vw,76px) 64px;
     display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
   }
   .hero-eyebrow{ color:var(--ink); opacity:.68; }
   .hero-eyebrow .dash{ background:var(--ink); }
-  .hero-name{ font-size:clamp(58px,7.2vw,112px); line-height:.78; letter-spacing:-.07em; max-width:7.4ch; color:var(--ink); }
+  .hero-name{ font-size:clamp(58px,6vw,88px); line-height:.82; letter-spacing:-.065em; max-width:8ch; color:var(--ink); }
   .hero-name em{ color:var(--accent); font-style:italic; font-weight:400; font-family:'Cormorant Garamond',Georgia,serif; letter-spacing:-.045em; }
   .hero-sub{ color:rgba(18,18,16,.72); border-left-color:rgba(18,18,16,.24); max-width:42ch; }
   .hero-booking{ color:var(--ink); }
@@ -1583,15 +1584,15 @@
   .runway-line{ background:var(--ink); }
 
   .moodboard{ padding:clamp(84px,10vw,144px) 0; }
-  .mb-head{ display:grid; grid-template-columns:.55fr 1.2fr .8fr; align-items:end; gap:28px; }
-  .mb-head h2{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; font-size:clamp(46px,7vw,88px); letter-spacing:-.045em; }
-  .mb-head p:last-child{ justify-self:end; }
-  .mb-grid{ grid-template-columns:1.08fr .78fr .82fr; gap:clamp(12px,1.8vw,28px); }
-  .mb-a{ margin-top:8vw; }
-  .mb-b{ margin-top:0; }
-  .mb-c{ margin-top:5vw; }
-  .mb-d{ grid-column:1 / span 2; margin-top:1vw; }
-  .mb-note{ padding-left:clamp(8px,2vw,26px); }
+  .mb-head{ display:grid; grid-template-columns:.38fr 1fr; align-items:end; gap:28px; max-width:1050px; }
+  .mb-head h2{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; font-size:clamp(44px,5.4vw,76px); letter-spacing:-.045em; }
+  .mb-head p:last-child{ grid-column:2; max-width:52ch; justify-self:start; }
+  .mb-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(14px,1.8vw,28px); align-items:stretch; }
+  .mb-a{ display:none; }
+  .mb-b,.mb-c,.mb-d{ margin:0; width:100%; aspect-ratio:4/5; grid-column:auto; }
+  .mb-b img,.mb-c img,.mb-d img{ object-fit:cover; width:100%; height:100%; }
+  .mb-d img{ object-position:center; }
+  .mb-note{ grid-column:1 / -1; padding:20px 0 0; flex-direction:row; justify-content:space-between; align-items:flex-end; }
 
   .identity-editorial{ padding:clamp(76px,10vw,144px) 0; background:var(--ink); color:#f5f1e9; }
   .identity-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr); gap:clamp(46px,8vw,132px); align-items:start; }
@@ -1611,10 +1612,10 @@
   .about-elegant-title{ font-family:'Cormorant Garamond',Georgia,serif; font-weight:500; letter-spacing:-.04em; }
 
   @media (max-width:760px){
-    .hero{ min-height:100svh; display:flex; flex-direction:column; }
-    .hero-bg{ min-height:0; height:min(64svh,620px); width:100%; max-width:none; order:0; aspect-ratio:auto; inset:auto; }
+    .hero{ min-height:0; height:auto; display:flex; flex-direction:column; }
+    .hero-bg{ min-height:0; height:min(64svh,620px); width:100%; max-width:none; padding:0; order:0; aspect-ratio:auto; inset:auto; }
     .hero-landscape picture{ display:block; width:100%; height:100%; }
-    .hero-landscape img{ object-position:center 20%; }
+    .hero-landscape img{ object-fit:cover; object-position:center 20%; }
     .hero-content{ order:1; padding:28px 22px 42px; justify-content:flex-start; }
     .hero-name{ max-width:100%; font-size:clamp(50px,14.8vw,64px); line-height:.82; }
     .hero-name br{ display:none; }
@@ -1624,9 +1625,10 @@
     .mb-head{ display:flex; align-items:flex-start; }
     .mb-head p:last-child{ align-self:flex-start; }
     .mb-grid{ grid-template-columns:1.1fr .9fr; }
-    .mb-a{ margin-top:34px; }
     .mb-b{ margin-top:0; }
     .mb-c{ grid-column:1 / -1; width:min(330px,82vw); margin-top:22px; }
+    .mb-d{ grid-column:1 / -1; }
+    .mb-note{ flex-direction:column; align-items:flex-start; }
     .identity-grid{ grid-template-columns:1fr; }
     .identity-title{ font-size:58px; }
   }
@@ -2102,6 +2104,17 @@
     });
   }, { threshold:0.12 });
   revealEls.forEach(el => io.observe(el));
+
+  // Every Reel card uses the same visual language, whether it opens locally or externally.
+  document.querySelectorAll('.ugc-card').forEach(card => {
+    if(!card.querySelector('.ugc-play')){
+      const play = document.createElement('span');
+      play.className = 'ugc-play';
+      play.setAttribute('aria-hidden', 'true');
+      play.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+      card.appendChild(play);
+    }
+  });
 
   // Lightbox for editorial / campaign frames (not UGC cards, those link out)
   const lightbox = document.getElementById('lightbox');
